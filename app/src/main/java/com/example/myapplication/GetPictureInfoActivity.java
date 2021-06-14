@@ -2,6 +2,7 @@
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,14 +19,11 @@ import android.widget.Spinner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
 
-import static java.sql.DriverManager.println;
+import java.net.HttpURLConnection;
+import java.net.URL;                        //http통
 
 
 public class GetPictureInfoActivity extends AppCompatActivity
@@ -33,6 +31,7 @@ public class GetPictureInfoActivity extends AppCompatActivity
     Uri uri_from_main;
     Spinner spinner;
     JSONObject photo_info_object;
+    String json = "";
 
 
     @Override
@@ -126,7 +125,9 @@ public class GetPictureInfoActivity extends AppCompatActivity
             }
         });
 
-        toString();
+
+        json = photo_info_object.toString();
+
 
         Button btn_cancel = (Button) findViewById(R.id.btn_cancel);                                 //cancel버튼 누르면 MainActivity로 돌아가기
         btn_cancel.setOnClickListener(new View.OnClickListener() {
